@@ -5,7 +5,8 @@ dotenv.config();
 
 import express from "express";
 import mongoose from "mongoose";
-import productRoutes from "./routes/productRoutes.js"; // Import product routes <-- ADD THIS
+import productRoutes from "./routes/productRoutes.js";
+import questionRoutes from "./routes/questionRoutes.js"; // Import question routes <-- ADD THIS
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,7 +16,9 @@ const MONGODB_URI = process.env.MONGODB_URI;
 app.use(express.json());
 
 // Mount product routes
-app.use("/api/products", productRoutes); // <-- ADD THIS
+app.use("/api/products", productRoutes);
+// Mount question routes
+app.use("/api/questions", questionRoutes); // <-- ADD THIS
 
 // Basic route for testing (keep it for now, can remove later)
 app.get("/", (req, res) => {
