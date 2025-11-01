@@ -1,11 +1,11 @@
 // server/server.js
 
-// Load environment variables from .env file
 import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
 import mongoose from "mongoose";
+import productRoutes from "./routes/productRoutes.js"; // Import product routes <-- ADD THIS
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,7 +14,10 @@ const MONGODB_URI = process.env.MONGODB_URI;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Basic route for testing
+// Mount product routes
+app.use("/api/products", productRoutes); // <-- ADD THIS
+
+// Basic route for testing (keep it for now, can remove later)
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
